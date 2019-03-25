@@ -72,4 +72,3 @@ InitBoardState()
 
 while True:
     q = q + 1
-    print("Hello1")
