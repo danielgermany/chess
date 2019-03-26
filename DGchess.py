@@ -65,22 +65,26 @@ def InitBoardGrid():
     for x in range(8):
         for y in range(8):
             if y == 0:
-                boardGrid[x][y] = "a" + str(x+1)
+                boardGrid[x][y] = "a" + str(y + 1)
             elif y == 1:
-                boardGrid[x][y] = "b" + str(x+1)
+                boardGrid[x][y] = "b" + str(y + 1)
             elif y == 2:
-                boardGrid[x][y] = "c" + str(x+1)
+                boardGrid[x][y] = "c" + str(y + 1)
             elif y == 3:
-                boardGrid[x][y] = "d" + str(x+1)
+                boardGrid[x][y] = "d" + str(y + 1)
             elif y == 4:
-                boardGrid[x][y] = "e" + str(x+1)
+                boardGrid[x][y] = "e" + str(y + 1)
             elif y == 5:
-                boardGrid[x][y] = "f" + str(x+1)
+                boardGrid[x][y] = "f" + str(y + 1)
             elif y == 6:
-                boardGrid[x][y] = "g" + str(x+1)
+                boardGrid[x][y] = "g" + str(y + 1)
             elif y == 7:
-                boardGrid[x][y] = "h" + str(x+1)
+                boardGrid[x][y] = "h" + str(y + 1)
             print(boardGrid[x][y])
+
+def SetBoardGrid():
+
+
 print("Size of window?(500 recommended)");windowSize = int(input())
 squareSize = (windowSize/10)
 chessWin = GraphWin("Chess", windowSize,windowSize);chessWin.setCoords(0,0, windowSize,windowSize)
