@@ -82,16 +82,19 @@ def InitBoardGrid():
                 boardGrid[x][y] = "h" + str(y + 1)
             print(boardGrid[x][y])
 
-def SetBoardGrid():
+def draw_ci(cX, cY, size, color, win):
+    circle = Circle(Point(cX, cY), size)
+    circle.setFill(color)
+    circle.draw(win)
 
 
-print("Size of window?(500 recommended)");windowSize = int(input())
-squareSize = (windowSize/10)
-chessWin = GraphWin("Chess", windowSize,windowSize);chessWin.setCoords(0,0, windowSize,windowSize)
-q = 0
-drawBoard(squareSize,chessWin)
-InitBoardState()
-InitBoardGrid()
+    print("Size of window?(500 recommended)");windowSize = int(input())
+    squareSize = (windowSize/10)
+    chessWin = GraphWin("Chess", windowSize,windowSize);chessWin.setCoords(0,0, windowSize,windowSize)
+    q = 0
+    drawBoard(squareSize,chessWin)
+    InitBoardState()
+    InitBoardGrid()
 
 while True:
     q = q + 1
