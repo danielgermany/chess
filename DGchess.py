@@ -87,14 +87,24 @@ def draw_ci(cX, cY, size, color, win):
     circle.setFill(color)
     circle.draw(win)
 
+
+
+
 print("Size of window?(500 recommended)");windowSize = int(input())
 squareSize = (windowSize/10)
-peiceSize = squareSize - (windowSize/17)
+pieceSize = squareSize - (windowSize/17)
 chessWin = GraphWin("Chess", windowSize,windowSize);chessWin.setCoords(0,0, windowSize,windowSize)
 q = 0
 drawBoard(squareSize,chessWin)
 InitBoardState()
 InitBoardGrid()
+
+for x in range (8):
+    for y in range (8):
+        if 0 <= y <= 1:
+            draw_ci (squareSize * (1.5 + x), squareSize * (1.5 +y), pieceSize, color_rgb(230,50,50), chessWin)
+        elif 6 <= y <= 8:
+            draw_ci (squareSize * (1.5 + x), squareSize * (1.5 +y), pieceSize, color_rgb(230,50,50), chessWin)
 
 while True:
     q = q + 1
