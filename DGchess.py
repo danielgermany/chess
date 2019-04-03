@@ -1,5 +1,8 @@
 from graphics import *
 
+boardGrid = [[" " for x in range(8)]
+                   for y in range(8)]
+
 def drawBoard(sZ,window):
     chessBackground = Rectangle(Point(sZ,sZ),Point(sZ * 9,sZ * 9))
     chessBackground.setFill(color_rgb(245,245,220));chessBackground.draw(chessWin)
@@ -60,26 +63,25 @@ def InitBoardState():
             print(boardState[x][y])
 
 def InitBoardGrid():
-    boardGrid = [[" " for x in range(8)]
-                   for y in range(8)]
+
     for x in range(8):
         for y in range(8):
             if y == 0:
-                boardGrid[x][y] = "a" + str(y + 1)
+                boardGrid[x][y] = "a" + str(x + 1)
             elif y == 1:
-                boardGrid[x][y] = "b" + str(y + 1)
+                boardGrid[x][y] = "b" + str(x + 1)
             elif y == 2:
-                boardGrid[x][y] = "c" + str(y + 1)
+                boardGrid[x][y] = "c" + str(x + 1)
             elif y == 3:
-                boardGrid[x][y] = "d" + str(y + 1)
+                boardGrid[x][y] = "d" + str(x + 1)
             elif y == 4:
-                boardGrid[x][y] = "e" + str(y + 1)
+                boardGrid[x][y] = "e" + str(x + 1)
             elif y == 5:
-                boardGrid[x][y] = "f" + str(y + 1)
+                boardGrid[x][y] = "f" + str(x + 1)
             elif y == 6:
-                boardGrid[x][y] = "g" + str(y + 1)
+                boardGrid[x][y] = "g" + str(x + 1)
             elif y == 7:
-                boardGrid[x][y] = "h" + str(y + 1)
+                boardGrid[x][y] = "h" + str(x + 1)
             print(boardGrid[x][y])
 
 def draw_ci(cX, cY, size, color, win):
@@ -87,7 +89,12 @@ def draw_ci(cX, cY, size, color, win):
     circle.setFill(color)
     circle.draw(win)
 
-
+def findPos(xPos,yPos):
+    for x in range (8):
+        if (squareSize * (x+1)) < xPos < (squareSize * (x+2)):
+            for y in range(8):
+                if (squareSize * (y+1)) < yPos < (squareSize * (y+2)):
+                    return boardGrid[x][y]
 
 
 print("Size of window?(500 recommended)");windowSize = int(input())
@@ -102,9 +109,10 @@ InitBoardGrid()
 for x in range (8):
     for y in range (8):
         if 0 <= y <= 1:
-            draw_ci (squareSize * (1.5 + x), squareSize * (1.5 +y), pieceSize, color_rgb(230,50,50), chessWin)
+            draw_ci (squareSize * (1.5 + x), squareSize * (1.5 + y), pieceSize, color_rgb(255,255,255), chessWin)
         elif 6 <= y <= 8:
-            draw_ci (squareSize * (1.5 + x), squareSize * (1.5 +y), pieceSize, color_rgb(230,50,50), chessWin)
+            draw_ci (squareSize * (1.5 + x), squareSize * (1.5 + y), pieceSize, color_rgb(0,0,0), chessWin)
 
-while True:
-    q = q + 1
+(mouseX,mouseY) = chessWin.getMouse()
+print(mouseX,mouseY)
+print(findPos(mouseX,mouseY))
