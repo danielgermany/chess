@@ -2,7 +2,8 @@ from graphics import *
 
 boardGrid = [[" " for x in range(8)]
                    for y in range(8)]
-
+boardState = [[" " for x in range(8)]
+               for y in range(8)]
 def drawBoard(sZ,window):
     chessBackground = Rectangle(Point(sZ,sZ),Point(sZ * 9,sZ * 9))
     chessBackground.setFill(color_rgb(245,245,220));chessBackground.draw(chessWin)
@@ -17,9 +18,6 @@ def drawBoard(sZ,window):
             chessRect.draw(window)
 
 def InitBoardState():
-    boardState = [[" " for x in range(8)]
-                   for y in range(8)]
-
     for y in range(8):
         for x in range(8):
             if y == 0:
@@ -63,7 +61,6 @@ def InitBoardState():
             print(boardState[x][y])
 
 def InitBoardGrid():
-
     for x in range(8):
         for y in range(8):
             if y == 0:
@@ -89,12 +86,34 @@ def draw_ci(cX, cY, size, color, win):
     circle.setFill(color)
     circle.draw(win)
 
+def drawFirstSetPeices():
+    for x in range (8):
+        for y in range (8):
+            if 0 <= y <= 1:
+                draw_ci (squareSize * (1.5 + x), squareSize * (1.5 + y), pieceSize, color_rgb(255,255,255), chessWin)
+            elif 6 <= y <= 8:
+                draw_ci (squareSize * (1.5 + x), squareSize * (1.5 + y), pieceSize, color_rgb(0,0,0), chessWin)
+
 def findPos(xPos,yPos):
     for x in range (8):
         if (squareSize * (x+1)) < xPos < (squareSize * (x+2)):
             for y in range(8):
                 if (squareSize * (y+1)) < yPos < (squareSize * (y+2)):
                     return boardGrid[x][y]
+
+
+
+def getMouseCoord():
+    (mouseX,mouseY) = chessWin.getMouse()
+    print("Mouse is over: " + findPos(mouseX,mouseY))
+    for x in range (8):
+        for y in range(8):
+            if boardGrid[x][y] == findPos(mouseX,mouseY):
+                if boardState[x][y] != " ":
+                    print("The peice residing here is: " + boardState[x][y])
+                else:
+                    print("There is no peice here")
+
 
 
 print("Size of window?(500 recommended)");windowSize = int(input())
@@ -105,14 +124,7 @@ q = 0
 drawBoard(squareSize,chessWin)
 InitBoardState()
 InitBoardGrid()
+drawFirstSetPeices()
 
-for x in range (8):
-    for y in range (8):
-        if 0 <= y <= 1:
-            draw_ci (squareSize * (1.5 + x), squareSize * (1.5 + y), pieceSize, color_rgb(255,255,255), chessWin)
-        elif 6 <= y <= 8:
-            draw_ci (squareSize * (1.5 + x), squareSize * (1.5 + y), pieceSize, color_rgb(0,0,0), chessWin)
-
-(mouseX,mouseY) = chessWin.getMouse()
-print(mouseX,mouseY)
-print(findPos(mouseX,mouseY))
+while True:
+    getMouseCoord()
