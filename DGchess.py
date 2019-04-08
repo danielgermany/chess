@@ -103,6 +103,9 @@ for x in range (8):
     for y in range (8):
         if 0 <= y <= 1:
             draw_ci (squareSize * (1.5 + x), squareSize * (1.5 +y), pieceSize, color_rgb(255,255,255), chessWin)
+            message = Text(Point(3,4), "R")
+            message.setTextColor("White")
+            message.draw(
         elif 6 <= y <= 8:
             draw_ci (squareSize * (1.5 + x), squareSize * (1.5 +y), pieceSize, color_rgb(0,0,0), chessWin)
 
