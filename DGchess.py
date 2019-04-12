@@ -39,7 +39,7 @@ def InitBoardState():
                     boardState[x][y] = "WR2"
             elif y == 1:
                 boardState[x][y] = "WP" + str(x + 1)
-            elif y == 6:
+            elif y == 7:
                 if x == 0:
                     boardState[x][y] = "BR1"
                 elif x == 1:
@@ -56,7 +56,7 @@ def InitBoardState():
                     boardState[x][y] = "BN2"
                 elif x == 7:
                     boardState[x][y] = "BR2"
-            elif y == 7:
+            elif y == 6:
                 boardState[x][y] = "BP" + str(x + 1)
             print(boardState[x][y])
 
@@ -103,7 +103,7 @@ def findPos(xPos,yPos):
 
 
 
-def getMouseCoord():
+def checkMouseStatus():
     (mouseX,mouseY) = chessWin.getMouse()
     print("Mouse is over: " + findPos(mouseX,mouseY))
     for x in range (8):
@@ -113,8 +113,23 @@ def getMouseCoord():
                     print("The peice residing here is: " + boardState[x][y])
                 else:
                     print("There is no peice here")
+                return boardState[x][y]
 
-
+def movePiece(piece,size,sqSize):
+    (mouseX,mouseY) = chessWin.getMouse()
+    for x in range(8):
+        for y in range(8):
+            if piece == " ":
+                break
+            elif piece == boardState[x][y]:
+                print(piece,x,y)
+                if piece[:1] == "B":
+                    draw_ci (mouseX, mouseY, size, color_rgb(0,0,0), chessWin)
+                elif piece[:1] == "W":
+                    draw_ci (mouseX, mouseY, size, color_rgb(255,255,255), chessWin)
+                undraw(circle)
+            else:
+                continue
 
 print("Size of window?(500 recommended)");windowSize = int(input())
 squareSize = (windowSize/10)
@@ -127,4 +142,4 @@ InitBoardGrid()
 drawFirstSetPeices()
 
 while True:
-    getMouseCoord()
+    movePiece(checkMouseStatus(),pieceSize,squareSize)
