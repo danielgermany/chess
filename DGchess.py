@@ -86,20 +86,19 @@ def draw_ci(cX, cY, size, color, win,circle):
     circle = Circle(Point(cX, cY), size)
     circle.setFill(color)
     circle.draw(win)
-
+def draw_text(tX,tY,string,color,win):
+    message = Text(Point(tX,tY ), string)
+    message.setTextColor(color)
+    message.draw(win)
 def drawFirstSetPeices():
     for x in range (8):
         for y in range (8):
             if 0 <= y <= 1:
                 draw_ci (squareSize * (1.5 + x), squareSize * (1.5 + y), pieceSize, color_rgb(255,255,255), chessWin, boardState[x][y])
-                message = Text(Point(squareSize * (1.5 + x), squareSize * (1.5 + y)), boardState[x][y][1:])
-                message.setTextColor("black")
-                message.draw(chessWin)
+                draw_text(squareSize * (1.5 + x), squareSize * (1.5 + y),boardState[x][y][1:],"black",chessWin)
             elif 6 <= y <= 8:
                 draw_ci (squareSize * (1.5 + x), squareSize * (1.5 + y), pieceSize, color_rgb(0,0,0), chessWin, boardState[x][y])
-                message = Text(Point(squareSize * (1.5 + x), squareSize * (1.5 + y)), boardState[x][y][1:])
-                message.setTextColor("white")
-                message.draw(chessWin)
+                draw_text(squareSize * (1.5 + x), squareSize * (1.5 + y),boardState[x][y][1:],"white",chessWin)
 def findPos(xPos,yPos):
     for x in range (8):
         if (squareSize * (x+1)) < xPos < (squareSize * (x+2)):
@@ -149,15 +148,11 @@ def movePiece(piece,size,sqSize):
                 print(gridPosX, " ", gridPosY)
                 if piece[:1] == "B":
                     draw_ci (squareSize * (0.5 + gridPosX), squareSize * (0.5 + gridPosY), size, color_rgb(0,0,0), chessWin,boardState[x][y])
-                    message = Text(Point(squareSize * (0.5 + gridPosX), squareSize * (0.5 + gridPosY)), boardState[gridPosX][gridPosY])
-                    message.setTextColor("white")
-                    message.draw(chessWin)
+                    draw_text(squareSize * (0.5 + gridPosX), squareSize * (0.5 + gridPosY),boardState[x][y][1:],"white",chessWin)
                     print("Printing text")
                 elif piece[:1] == "W":
                     draw_ci (squareSize * (0.5 + gridPosX), squareSize * (0.5 + gridPosY), size, color_rgb(255,255,255), chessWin,boardState[x][y])
-                    message = Text(Point(squareSize * (0.5 + gridPosX), squareSize * (0.5 + gridPosY)), boardState[gridPosX][gridPosY])
-                    message.setTextColor("black")
-                    message.draw(chessWin)
+                    draw_text(squareSize * (0.5 + gridPosX), squareSize * (0.5 + gridPosY),boardState[x][y][1:],"black",chessWin)
                     print("Printing text")
 
                 chessRect = Rectangle(Point(squareSize * (x + 1),squareSize * (y + 1)),Point(squareSize * (x + 2),squareSize * (y + 2)))
@@ -173,11 +168,7 @@ def movePiece(piece,size,sqSize):
                         chessRect.setFill(color_rgb(245,245,220))
                 chessRect.draw(chessWin)
 
-                #boardState[x][y] = " "
                 #boardState[gridPosX - 1][gridPosY - 1] = boardState[x][y]
-
-            else:
-                continue
 
 print("Size of window?(500 recommended)");windowSize = int(input())
 squareSize = (windowSize/10)
