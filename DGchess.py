@@ -170,22 +170,10 @@ def movePiece(piece,size,sqSize):
 
                 #boardState[gridPosX - 1][gridPosY - 1] = boardState[x][y]
 
-<<<<<<< HEAD
-
-
-
 print("Size of window?(500 recommended)");windowSize = int(input())
 squareSize = (windowSize/10)
 pieceSize = squareSize - (windowSize/17)
-=======
-print("Size of window?(500 recommended)");windowSize = int(input())
-squareSize = (windowSize/10)
-<<<<<<< HEAD
-peiceSize = squareSize - (windowSize/17)
->>>>>>> circleDraw
-=======
-pieceSize = squareSize - (windowSize/17)
->>>>>>> chessRules
+
 chessWin = GraphWin("Chess", windowSize,windowSize);chessWin.setCoords(0,0, windowSize,windowSize)
 drawBoard(squareSize,chessWin)
 InitBoardState()
